@@ -74,7 +74,19 @@ contract LeadToken is ERC20Interface {
 
     mapping(address => uint256) balances;
     mapping(address => mapping(address => uint256)) allowed;
+    
+    mapping(address => address) public whitelist;
 
+
+    function addwhitelist(address _account) public {
+        whitelist[msg.sender] = _account;
+    }
+
+    function checkwhitelist(address account) public view returns (address) {
+        return whitelist[account];
+    }
+    
+    
     /**
      * Constrctor function
      *
